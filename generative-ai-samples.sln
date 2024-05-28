@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-open-ai-api", "azure-open-ai-api", "{EF75A34B-44D4-496F-8BE4-782354FEF8FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gpt", "azure-open-ai-api\gpt\gpt.csproj", "{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D76877E7-BA8A-4D16-96BD-3DFFC28F9D9B} = {EF75A34B-44D4-496F-8BE4-782354FEF8FE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CF053BC-0051-4A9F-8AC1-F5BE70E1AD94}
+	EndGlobalSection
+EndGlobal

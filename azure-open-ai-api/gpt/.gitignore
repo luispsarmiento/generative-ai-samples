@@ -1,0 +1,148 @@
+# Compiled object files
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.dll
+
+# Compiled Static libraries
+*.lib
+
+# Executable files
+*.exe
+*.out
+*.app
+*.ipa
+*.apk
+*.dSYM.zip
+*.dSYM
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+# wwwroot/
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto generated files
+*.g.cs
+*.g.i.cs
+*.g.js
+*.meta.js
+*.meta.ts
+*.designer.cs
+*.vspscc
+*.vssscc
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.ncrunchproject
+*.ncrunchsolution
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# Ignore all .NET Core projects' "bin" and "obj" folders
+**/[Bb]in/
+**/[Oo]bj/
+
+# Uncomment if you have NuGet Packages in a packages directory
+# packages/
+*.nupkg
+#*.nuspec
+
+# Uncomment if you have build info files in a properties directory
+# properties/
+
+# JetBrains Rider
+.idea/
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+CTestTestfile.cmake
+cmake_install.cmake
+CMakeLists.txt.user
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Yarn
+.yarn/
+.yarnclean
+.yarn-integrity
+.yarn-metadata.json
+.yarnrc.yml
+
+# Optional files for Intellisense
+.vscode/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore all files for git
+!.gitignore
+
+# Coverlet coverage output
+coverage.opencover.xml
+coverage.opencover.json
+coverage.cobertura.xml
+coverage.cobertura.json
+
+# Ignore all output files created by dotnet publish
+publish/
+
+# Ignore StyleCop configuration file
+stylecop.json
+
+# Ignore the global jetbrains folder that gets created by Rider or other JetBrains IDEs
+.idea/
+
+# Ignore VS Code folder and workspace files
+.vscode/
+*.code-workspace
+
+# Ignore Rider folders and files
+.idea/
+.idea_modules/
+*.iml
+
+# Ignore dotnet tool artifacts
+.dotnet_tool/
+
+# Ignore temporary folders
+.tmp/
+
+# Ignore the directory that gets created when running dotnet ef migrations
+Migrations/
+
+appsettings.json
