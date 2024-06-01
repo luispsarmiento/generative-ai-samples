@@ -17,6 +17,9 @@ namespace MT.Function
         protected readonly string? oaiKey;
         protected readonly string? oaiDeploymentName;
 
+        private string systemMessage = """Eres un asistente de estudio y solo eso. Solo usa la información que te proporcione el usuario. Si te solicitan alguna otra actividad que no sea relacionada con el estudio limita a dar una respuesta.""";
+        private string promptText = """Genera preguntas relevantes de exámen tipo test (con opción multiple) con nivel alto de resolución (implica pensamiento análitico y prueba de comprensión de conceptos teoricos) del tema proporcionado entre las etiquetas <input></input>. <input>{0}</input> Devuelve el resultado en un formaton JSON mimificado (limpio sin formato de presentación como Markdown o cualquier otro) como el que se muestra a continuación: [{"Question_text":"¿Cuál es la capital de Francia?","Answer_type":"Multiple choice","Correct_option":"C","Points":"1","Option_1":"Berlin","Option_2":"London","Option_3":"Paris","Option_4":"Madrid"}]""";
+
         public test_generator(ILogger<test_generator> logger)
         {
             _logger = logger;
@@ -35,7 +38,7 @@ namespace MT.Function
                 return new ConflictResult();
             }
 
-            string? information = await GetInputInformation(req);//"La Guerra Fría fue un enfrentamiento político, económico, social, ideológico, militar y propagandístico que tuvo lugar después de la Segunda Guerra Mundial entre dos bloques principales: Occidental (capitalista) y Oriental (comunista). Estos bloques estaban liderados por los Estados Unidos y la Unión Soviética, respectivamente, su inicio se remonta a 1945.";//model.Information;
+            string? information = await GetInputInformation(req);
             
             if (information is null)
             {
@@ -44,13 +47,13 @@ namespace MT.Function
             }
             
             string result = GenerateTest(information);
+            List<TestGeneratorModelGet> jsonResult = JsonConvert.DeserializeObject<List<TestGeneratorModelGet>>(result);
 
-            return new JsonResult("{\"Gre\": " + result + "}");
+            return new JsonResult(jsonResult);
         }
 
         private string GenerateTest(string inputInformation){
-            string systemMessage = @"Eres un asistente de estudio y solo eso. Solo usa la información que te proporcione el usuario. Si te solicitan alguna otra actividad que no sea relacionada con el estudio limita a dar una respuesta.";
-            string inputText = inputInformation;
+            string inputText = promptText.Replace("{0}", inputInformation);
 
             try{
                 OpenAIClient client = new OpenAIClient(new Uri(oaiEndpoint), new AzureKeyCredential(oaiKey));
@@ -62,11 +65,11 @@ namespace MT.Function
                         new ChatRequestSystemMessage(systemMessage),
                         new ChatRequestUserMessage(inputText),
                     },
-                    Temperature = (float)0.7,
+                    Temperature = (float)0.6,
                     MaxTokens = 800,
-                    //NucleusSamplingFactor = (float)0.95,
-                    FrequencyPenalty = (float)1.5,
-                    PresencePenalty = (float)1.5,
+                    NucleusSamplingFactor = (float)0.95,
+                    FrequencyPenalty = 0,
+                    PresencePenalty = 0,
                     DeploymentName = oaiDeploymentName
                 };
 
@@ -97,5 +100,31 @@ namespace MT.Function
     public class TestGeneratorModel{
         [JsonProperty("information")]
         public string Information {get; set;} = string.Empty;
+    }
+
+    public class TestGeneratorModelGet
+    {
+        [JsonProperty("Question_text")]
+        public string QuestionText { get; set; }
+
+        [JsonProperty("Answer_type")]
+        public string AnswerType { get; set; }
+
+        [JsonProperty("Correct_option")]
+        public string CorrectOption { get; set; }
+        [JsonProperty("Points")]
+        public string Points { get; set; }
+
+        [JsonProperty("Option_1")]
+        public string Option1 { get; set; }
+
+        [JsonProperty("Option_2")]
+        public string Option2 { get; set; }
+
+        [JsonProperty("Option_3")]
+        public string Option3 { get; set; }
+
+        [JsonProperty("Option_4")]
+        public string Option4 { get; set; }
     }
 }
