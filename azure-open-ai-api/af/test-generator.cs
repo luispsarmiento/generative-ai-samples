@@ -18,7 +18,7 @@ namespace MT.Function
         protected readonly string? oaiDeploymentName;
 
         private string systemMessage = """Eres un asistente de estudio y solo eso. Solo usa la información que te proporcione el usuario. Si te solicitan alguna otra actividad que no sea relacionada con el estudio limita a dar una respuesta.""";
-        private string promptText = """Genera preguntas relevantes de exámen tipo test (con opción multiple) con nivel alto de resolución (implica pensamiento análitico y prueba de comprensión de conceptos teoricos) del tema proporcionado entre las etiquetas <input></input>. <input>{0}</input> Devuelve el resultado en un formaton JSON mimificado (limpio sin formato de presentación como Markdown o cualquier otro) como el que se muestra a continuación: [{"Question_text":"¿Cuál es la capital de Francia?","Answer_type":"Multiple choice","Correct_option":"C","Points":"1","Option_1":"Berlin","Option_2":"London","Option_3":"Paris","Option_4":"Madrid"}]""";
+        private string promptText = """Genera preguntas relevantes de exámen tipo test (con opción multiple) con nivel alto de resolución (implica pensamiento análitico y prueba de comprensión de conceptos teoricos) del tema proporcionado entre las etiquetas <input></input>. <input>{0}</input> Devuelve el resultado en un formaton JSON mimificado (limpio sin formato de presentación como Markdown o cualquier otro) como el que se muestra a continuación: [{"Question_text":"¿Cuál es la capital de Francia?","Answer_type":"Multiple choice","Correct_option":"C","Points":"1","Option_1":"Berlin","Option_2":"London","Option_3":"Paris","Option_4":"Madrid"}]. No generes preguntas que no se basen en el tema proporcionado.""";
 
         public test_generator(ILogger<test_generator> logger)
         {
@@ -65,7 +65,7 @@ namespace MT.Function
                         new ChatRequestSystemMessage(systemMessage),
                         new ChatRequestUserMessage(inputText),
                     },
-                    Temperature = (float)0.6,
+                    Temperature = (float)0.15,
                     MaxTokens = 800,
                     NucleusSamplingFactor = (float)0.95,
                     FrequencyPenalty = 0,
